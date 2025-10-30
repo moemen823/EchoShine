@@ -1,0 +1,64 @@
+/* css/style.css */
+
+/* Hero section */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #00416A 0%, #E4E5E6 100%);
+  display: flex;
+  align-items: center;
+  color: #fff;
+  padding-top: 70px;
+}
+
+/* Process section */
+.process-section {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2b2b2b 100%);
+}
+
+.step {
+  background: rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.step:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+}
+
+/* Navbar adjustments */
+.navbar {
+  transition: background 0.3s ease;
+}
+.navbar.scrolled {
+  background: rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Responsive tweaks */
+@media (max-width: 767px) {
+  .hero {
+    text-align: center;
+    padding: 100px 20px;
+  }
+  .hero img {
+    margin-top: 20px;
+    max-height: 250px;
+  }
+}
+
+.hero img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.navbar .dropdown-toggle img {
+  border: 2px solid #ffc107;
+  transition: 0.3s;
+}
+
+.navbar .dropdown-toggle:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 0 8px rgba(255, 193, 7, 0.6);
+}

@@ -1,0 +1,55 @@
+/* ===============================
+   SolarClean - Dashboard Styles
+   =============================== */
+
+.dashboard-bg {
+  background: linear-gradient(135deg, #00416A 0%, #E4E5E6 100%);
+  min-height: 100vh;
+  color: #fff;
+}
+
+/* Dashboard section */
+.dashboard-section {
+  padding-top: 100px;
+}
+
+/* Stat cards */
+.stat-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  text-align: center;
+  padding: 2rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(255, 193, 7, 0.5);
+}
+
+/* Glass card for table */
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Table */
+.table img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .stat-card {
+    padding: 1.5rem;
+  }
+}

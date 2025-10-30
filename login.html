@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> EcoShine Login</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+  <div class="login-wrapper">
+    <div class="login-card">
+      <h2 class="text-center text-warning fw-bold mb-3">☀️  EcoShine Login</h2>
+      <p class="text-center text-light small mb-4">Welcome back! Manage your solar cleaning appointments easily.</p>
+
+      <form id="loginForm">
+        <div class="form-group mb-3">
+          <label class="form-label text-light">Username</label>
+          <input type="text" id="username" class="form-control" placeholder="Enter username" required>
+        </div>
+
+        <div class="form-group mb-4">
+          <label class="form-label text-light">Password</label>
+          <input type="password" id="password" class="form-control" placeholder="Enter password" required>
+        </div>
+
+        <button type="submit" class="btn btn-login w-100 mb-3">Login</button>
+        <p id="status" class="status text-center small"></p>
+      </form>
+
+      <p class="text-center text-light small mt-3">
+        Don’t have an account? 
+        <a href="register.html" class="text-warning fw-bold">Create one</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Firebase Logic -->
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+  import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBGSfwSqmK239i6CMP5mIItp_Xj-mwYV2I",
+    authDomain: "solar-cleaning-website.firebaseapp.com",
+    databaseURL: "https://solar-cleaning-website-default-rtdb.firebaseio.com",
+    projectId: "solar-cleaning-website",
+    storageBucket: "solar-cleaning-website.appspot.com",
+    messagingSenderId: "454039844879",
+    appId: "1:454039844879:web:8051aac69c8ac7baf50b7a",
+    measurementId: "G-THCL9Q4WYX"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  const form = document.getElementById("loginForm");
+  const status = document.getElementById("status");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById("username").value.trim().toLowerCase();
+    const password = document.getElementById("password").value.trim();
+
+    if (!username || !password) {
+      status.textContent = "⚠️ Please fill in all fields.";
+      status.className = "status text-danger fw-bold";
+      return;
+    }
+
+    try {
+      const snapshot = await get(child(ref(db), `users/${username}`));
+      if (!snapshot.exists()) {
+        status.textContent = "❌ Username not found.";
+        status.className = "status text-danger fw-bold";
+        return;
+      }
+
+      const user = snapshot.val();
+
+      if (user.password === password) {
+        status.textContent = "✅ Login successful!";
+        status.className = "status text-success fw-bold";
+
+        // Save user info
+        localStorage.setItem("loggedUser", JSON.stringify(user));
+
+        // Redirect based on admin role
+        setTimeout(() => {
+          if (user.isAdmin === true) {
+            window.location.href = "dashboard.html";
+          } else {
+            window.location.href = "index.html"; // or your home page
+          }
+        }, 1000);
+      } else {
+        status.textContent = "❌ Incorrect password.";
+        status.className = "status text-danger fw-bold";
+      }
+    } catch (error) {
+      console.error(error);
+      status.textContent = "❌ Connection error.";
+      status.className = "status text-danger fw-bold";
+    }
+  });
+</script>
+
+<script>
+  const navLinks = document.getElementById("navLinks");
+  const user = JSON.parse(localStorage.getItem("loggedUser"));
+
+  if (user) {
+    // Profile image
+    let imgSrc = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+    if (user.panelPhoto && user.panelPhoto.includes("drive.google")) {
+      const match = user.panelPhoto.match(/[-\w]{25,}/);
+      if (match) imgSrc = `https://drive.google.com/uc?export=view&id=${match[0]}`;
+    } else if (user.panelPhoto) {
+      imgSrc = user.panelPhoto;
+    }
+
+    // Rebuild Navbar
+    navLinks.innerHTML = `
+      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="booking.html">Book Cleaning</a></li>
+            <li class="nav-item"><a class="nav-link" href="My Bookings.html"">My Book Cleaning</a></li>
+      ${user.isAdmin ? `<li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>` : ""}
+
+      <li class="nav-item dropdown ms-3">
+        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
+           role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="${imgSrc}" alt="User" class="rounded-circle me-2" style="width:35px; height:35px; object-fit:cover;">
+          <span class="fw-bold text-warning">${user.fullName.split(" ")[0]}</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end shadow">
+          <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>Profile</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="#" id="logoutBtn"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+        </ul>
+      </li>
+    `;
+
+    // Logout function
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("loggedUser");
+      window.location.href = "login.html";
+    });
+  }
+</script>
+
+</body>
+</html>

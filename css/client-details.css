@@ -1,0 +1,21 @@
+.details-bg {
+  background: linear-gradient(135deg, #0a192f, #1f4068, #278ea5);
+  min-height: 100vh;
+  color: #fff;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  box-shadow: 0 0 30px rgba(255, 193, 7, 0.4);
+}
+
+.details-section {
+  padding-top: 100px;
+}

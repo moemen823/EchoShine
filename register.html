@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Register |  EcoShine</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- AOS (Animate on Scroll) -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="./css/register.css">
+
+    <link rel="icon" type="image/x-icon" href="./imgs/logo.png">
+
+</head>
+
+<body class="register-bg">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="index.html">
+                <i class="bi bi-sun text-warning me-2"></i> EcoShine
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto text-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="booking.html">Book Cleaning</a></li>
+                    <li class="nav-item"><a class="nav-link" id="dashboardLink" href="dashboard.html">Dashboard</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Register Section -->
+    <section class="register-section d-flex align-items-center justify-content-center text-light py-5 mt-5">
+        <div class="container" data-aos="fade-up">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="register-card p-4 p-md-5 shadow-lg rounded-4 text-dark">
+                        <h2 class="text-center mb-4 text-warning fw-bold">Create Your  EcoShine Account</h2>
+                        <p class="text-center text-muted mb-4">Join us to keep your solar panels shining and efficient
+                            🌞</p>
+
+                        <form id="registerForm" class="p-4 bg-light rounded-4 shadow">
+                            <h3 class="text-center mb-3 text-primary">Register Your Account</h3>
+
+                            <div class="mb-3">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" id="fullName" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Username</label>
+                                <input type="text" id="username" class="form-control"
+                                    placeholder="Enter unique username" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Address</label>
+                                <input type="text" id="address" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" id="password" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Panel Photo (Google Drive Link)</label>
+                                <input type="url" id="panelPhoto" class="form-control"
+                                    placeholder="https://drive.google.com/..." required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 fw-bold">Register</button>
+                            <p id="status" class="text-center mt-3 small text-muted"></p>
+                        </form>
+
+
+                        <p class="text-center text-muted mt-4 mb-0">
+                            Already have an account?
+                            <a href="booking.html" class="text-warning text-decoration-none fw-semibold">Book
+                                Cleaning</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-light text-center">
+        <div class="container">
+            <p class="mb-0">© <span id="year"></span>  EcoShine  </p>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        
+        AOS.init({ duration: 900, once: true });
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Toggle password
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+        togglePassword.addEventListener('click', () => {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            togglePassword.innerHTML = type === 'password' ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
+        });
+
+        // Preview upload
+        const photoInput = document.getElementById('photo');
+        const preview = document.getElementById('preview');
+        photoInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                preview.src = URL.createObjectURL(file);
+                preview.classList.remove('d-none');
+                preview.style.maxHeight = "250px";
+            }
+        });
+
+        // Form handler
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert("✅ Registration successful (Firebase integration next)");
+        });
+    </script>
+    <!-- Firebase connection -->
+    <!-- Firebase register script: paste this into register.html and remove any other Firebase/login script there -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+        import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
+
+        // --- Firebase config (your project) ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyBGSfwSqmK239i6CMP5mIItp_Xj-mwYV2I",
+            authDomain: "solar-cleaning-website.firebaseapp.com",
+            databaseURL: "https://solar-cleaning-website-default-rtdb.firebaseio.com",
+            projectId: "solar-cleaning-website",
+            storageBucket: "solar-cleaning-website.appspot.com",
+            messagingSenderId: "454039844879",
+            appId: "1:454039844879:web:8051aac69c8ac7baf50b7a",
+            measurementId: "G-THCL9Q4WYX"
+        };
+
+        // Initialize
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Elements
+        const form = document.getElementById('registerForm');
+        const status = document.getElementById('status');
+
+        // Helper: normalize username
+        function normalizeUsername(s) {
+            return s.trim().toLowerCase().replace(/\s+/g, '_');
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            status.textContent = '';
+            status.className = 'text-center mt-3 small text-muted';
+
+            // Read values
+            const fullName = document.getElementById('fullName').value.trim();
+            const usernameInput = document.getElementById('username').value.trim();
+            const username = normalizeUsername(usernameInput);
+            const email = document.getElementById('email').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const password = document.getElementById('password').value;
+            const panelPhoto = document.getElementById('panelPhoto').value.trim();
+
+            // Basic validation
+            if (!fullName || !usernameInput || !email || !address || !password || !panelPhoto) {
+                status.textContent = '⚠️ Please fill in all fields.';
+                status.className = 'text-danger text-center small fw-bold';
+                return;
+            }
+
+            if (!/^[a-z0-9_]+$/.test(username)) {
+                status.textContent = '⚠️ Username may contain only lowercase letters, numbers and underscores.';
+                status.className = 'text-danger text-center small fw-bold';
+                return;
+            }
+
+            try {
+                // Check uniqueness
+                const dbRef = ref(db);
+                const snapshot = await get(child(dbRef, `users/${username}`));
+                if (snapshot.exists()) {
+                    status.textContent = '⚠️ Username already exists. Please choose another one.';
+                    status.className = 'text-danger text-center small fw-bold';
+                    return;
+                }
+
+                // Prepare user object
+                const userData = {
+                    fullName,
+                    username,
+                    email,
+                    address,
+                    password,           // for production, DO NOT store plain passwords — use Firebase Auth. For now ok for testing.
+                    panelPhoto,
+                    isAdmin: false,
+                    registeredAt: new Date().toISOString()
+                };
+
+                // Save
+                await set(ref(db, `users/${username}`), userData);
+
+                // Success
+                status.textContent = '✅ Registered successfully! Redirecting to login...';
+                status.className = 'text-success text-center small fw-bold';
+                form.reset();
+
+                // Optionally redirect to login
+                setTimeout(() => window.location.href = 'login.html', 1400);
+            } catch (err) {
+                console.error('Register error:', err);
+                status.textContent = '❌ Error saving data — check console.';
+                status.className = 'text-danger text-center small fw-bold';
+            }
+        });
+    </script>
+<script>
+  const navLinks = document.getElementById("navLinks");
+  const user = JSON.parse(localStorage.getItem("loggedUser"));
+
+  if (user) {
+    // Profile image
+    let imgSrc = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+    if (user.panelPhoto && user.panelPhoto.includes("drive.google")) {
+      const match = user.panelPhoto.match(/[-\w]{25,}/);
+      if (match) imgSrc = `https://drive.google.com/uc?export=view&id=${match[0]}`;
+    } else if (user.panelPhoto) {
+      imgSrc = user.panelPhoto;
+    }
+
+    // Rebuild Navbar
+    navLinks.innerHTML = `
+      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="booking.html">Book Cleaning</a></li>
+ ${user.isAdmin ? `<li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>             <li class="nav-item"><a class="nav-link " href="messages.html">Client Messages</a></li>
+   <li class="nav-item"><a class="nav-link " href="users managment.html">Manage Users</a></li>
+` : ""}   
+      <li class="nav-item"><a class="nav-link" href="about.html"">How are We</a></li>
+
+
+      <li class="nav-item dropdown ms-3">
+        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
+           role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="${imgSrc}" alt="User" class="rounded-circle me-2" style="width:35px; height:35px; object-fit:cover;">
+          <span class="fw-bold text-warning">${user.fullName.split(" ")[0]}</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end shadow">
+          <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>Profile</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="#" id="logoutBtn"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+        </ul>
+      </li>
+    `;
+
+    // Logout function
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("loggedUser");
+      window.location.href = "login.html";
+    });
+  }
+</script>
+
+<script>
+  // Get the dashboard link
+  const dashboardLink = document.getElementById("dashboardLink");
+  if (dashboardLink) dashboardLink.style.display = "none"; // Hide by default
+
+ 
+  if (user && user.isAdmin === true) {
+    // Show dashboard for admins
+    dashboardLink.style.display = "block";
+  } else {
+    // Make sure it's hidden for normal users or guests
+    if (dashboardLink) dashboardLink.style.display = "none";
+  }
+</script>
+
+
+</body>
+
+</html>

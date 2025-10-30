@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Who We Are | EcoShine</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .her {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('https://img1.wsimg.com/isteam/ip/a69efbb0-032e-466f-af5d-cd25ebc06dd9/thumbnails/thumbnail-5fd1b174-046d-4ce4-b7df-21dffcf8a53e.png') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        .hero h1 {
+            font-weight: 700;
+            font-size: 3rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        .about {
+            padding: 70px 20px;
+        }
+
+        .about h2 {
+            color: #28a745;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #198754;
+            font-weight: 600;
+        }
+
+        .team {
+            background-color: #e9f7ef;
+            padding: 60px 20px;
+        }
+
+        .team-member {
+            text-align: center;
+            margin-bottom: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-member img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 4px solid #28a745;
+        }
+
+        footer {
+            background: #222;
+            color: #bbb;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="index.html">
+                <i class="bi bi-sun me-2 text-warning"></i> EcoShine
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto text-center align-items-center" id="navLinks">
+                    <!-- Links will be populated dynamically -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="her">
+        <h1>Who We Are</h1>
+        <p class="mt-3">Building Smart Robots to Keep Solar Panels Clean and Efficient</p>
+    </section>
+
+    <!-- About Section -->
+    <section class="about container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img src="https://ecoshine.co.nz/wp-content/uploads/2024/02/Robot-Cleaning-2-Large.jpg"
+                    alt="EcoShine Robot Cleaning Panels" class="img-fluid rounded shadow">
+            </div>
+            <div class="col-md-6 mt-4 mt-md-0">
+                <h2>Our Vision & Mission</h2>
+                <p>
+                    <strong>EcoShine</strong> was born from the belief that technology can make renewable energy
+                    smarter,
+                    cleaner, and more sustainable. We design and build <span class="highlight">robotic cleaning
+                        systems</span>
+                    for solar panels that work automatically, reducing manual labor, water waste, and energy loss.
+                </p>
+                <p>
+                    Dust and dirt can reduce a panel’s performance by up to <span class="highlight">30%</span>. Our
+                    robot
+                    restores full efficiency through precise, eco-friendly cleaning cycles — keeping your solar panels
+                    shining and
+                    productive all year long.
+                </p>
+                <p>
+                    With a mix of <span class="highlight">IoT control, automation, and robotics</span>, EcoShine
+                    combines
+                    innovation and sustainability to ensure every ray of sunlight counts toward a greener future.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team py-5" style="background: #e9f7ef;">
+        <div class="container">
+            <h2 class="text-center mb-5" style="color:#198754;">Meet the Team</h2>
+
+            <div class="row justify-content-center g-4 mb-5">
+                
+               
+                <div class="col-lg-4 col-md-6 col-sm-10">
+                    <div class="card text-center shadow-sm border-0 p-3">
+                        <img src="./imgs/kanoish.png" alt="Hossam Kanoish" class="rounded-circle mx-auto mb-3"
+                            style="width:160px; height:160px; object-fit:cover; border: 4px solid #28a745;">
+                        <h5 class="fw-bold">Hossam Kanoish</h5>
+                        <p class="text-muted mb-1">Founders& CEO</p>
+                        <p class="small">
+                            Leads innovation in robotic solar cleaning systems, combining embedded design and renewable
+                            energy technology to enhance efficiency and sustainability.</p>
+                        <div class="mt-2">
+                            <a href="#" class="text-success mx-1 fs-5"><i class="bi bi-linkedin"></i></a>
+                            <a href="#" class="text-success mx-1 fs-5"><i class="bi bi-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-lg-4 col-md-6 col-sm-10">
+                    <div class="card text-center shadow-sm border-0 p-3">
+                        <img src="./imgs/mohamed.png" alt="Moamen Abdel Fattah" class="rounded-circle mx-auto mb-3"
+                            style="width:160px; height:160px; object-fit:cover; border: 4px solid #28a745;">
+                        <h5 class="fw-bold">Moamen Abdel Fattah</h5>
+                        <p class="text-muted mb-1">Technical Support Engineer</p>
+                        <p class="small">
+                            Expert in PV system automation and robotic control, integrating IoT and smart technologies
+                            to optimize solar panel performance and maintenance.
+                        <div class="mt-2">
+                            <a href="https://www.linkedin.com/in/mohamed-abdel-fatah-0369b6221/" target="_blank" class="text-success mx-1 fs-5"><i class="bi bi-linkedin"></i></a>
+                            <a href="#" class="text-success mx-1 fs-5"><i class="bi bi-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CSS (Add to your style.css or inside <style>) -->
+    <style>
+        .team h3 {
+            color: #28a745;
+        }
+
+        .team .card:hover {
+            transform: translateY(-5px) scale(1.02);
+            transition: 0.4s;
+        }
+
+        @media (max-width: 768px) {
+            .team .card img {
+                width: 120px !important;
+                height: 120px !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .team h3 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+
+
+    <!-- Footer -->
+    <footer>
+        <p class="mb-0">© 2025 EcoShine | Smart Robotic Solar Cleaning Systems</p>
+    </footer>
+
+    <script>
+        // Get logged user from localStorage
+        const userJson = localStorage.getItem("loggedUser");
+        const navLinks = document.getElementById("navLinks") || document.querySelector(".navbar-nav");
+
+        if (userJson) {
+            const user = JSON.parse(userJson);
+
+            // Default profile image
+            let imgSrc = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+            if (user.panelPhoto && user.panelPhoto.includes("drive.google")) {
+                const match = user.panelPhoto.match(/[-\w]{25,}/);
+                if (match) imgSrc = `https://drive.google.com/uc?export=view&id=${match[0]}`;
+            } else if (user.panelPhoto) {
+                imgSrc = user.panelPhoto;
+            }
+
+            // Build navbar dynamically
+            navLinks.innerHTML = `
+      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="booking.html">Book Cleaning</a></li>
+      <li class="nav-item"><a class="nav-link" href="My Bookings.html">My Bookings</a></li>
+      ${user.isAdmin ? `
+      <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link" href="messages.html">Client Messages</a></li>
+      <li class="nav-item"><a class="nav-link" href="users managment.html">Manage Users</a></li>
+      ` : ""}
+      <li class="nav-item"><a class="nav-link active" href="about.html">Who We Are</a></li>
+      <li class="nav-item dropdown ms-3">
+        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
+           role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="${imgSrc}" alt="User" class="rounded-circle me-2" style="width:35px; height:35px; object-fit:cover;">
+          <span class="fw-bold text-warning">${user.fullName.split(" ")[0]}</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end shadow">
+          <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>Profile</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="#" id="logoutBtn"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+        </ul>
+      </li>
+    `;
+
+            // Logout functionality
+            const logoutBtn = document.getElementById("logoutBtn");
+            if (logoutBtn) {
+                logoutBtn.addEventListener("click", () => {
+                    localStorage.removeItem("loggedUser");
+                    window.location.href = "login.html";
+                });
+            }
+
+        } else {
+            // If not logged in, show guest links
+            navLinks.innerHTML = `
+      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+      <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+      <li class="nav-item"><a class="nav-link" href="booking.html">Book Cleaning</a></li>
+      <li class="nav-item"><a class="nav-link active" href="about.html">Who We Are</a></li>
+    `;
+        }
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
